@@ -12,17 +12,18 @@ import java.util.Map;
 @RestController
 public class ServiceBController {
 
-    @GetMapping("/api")
+    @GetMapping("/api") //get방식
     public String getRequest(){
         return "Hello Service B";
     }
     @GetMapping(value = "/api/{idx}")
-    @HystrixCommand(fallbackMethod = "doFallBack")
+    @HystrixCommand(fallbackMethod = "doFallBack") //circuit breaker 역할을 수행할 method
     public String getRequest(@PathVariable("idx") String idx){
         if (idx.equalsIgnoreCase("error"))
             throw new RuntimeException();
         return "Hello ServiceB";
     }
+
     @PostMapping("/api")
     @HystrixCommand(fallbackMethod = "doFallBack")
     public String postRequest(@RequestBody String message){
@@ -31,7 +32,7 @@ public class ServiceBController {
         return message;
     }
 
-    public String doFallBack(@RequestBody String message) {
+    public String doFallBack(@RequestBody String message) { //에러 발생시 해당 메소드 실행
         return "Fall Back";
     }
 }
