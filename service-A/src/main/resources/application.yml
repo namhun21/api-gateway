@@ -4,9 +4,6 @@ spring:
 server:
   port: 8800
 eureka:
-  instance:
-    instance-id: inst001
-
   client:
     service-url:
       register-with-eureka: true

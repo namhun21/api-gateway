@@ -1,12 +1,9 @@
 spring:
   application:
-    name: service-b
+    name: service-a
 server:
   port: 8801
 eureka:
-  instance:
-    instance-id: inst001
-
   client:
     service-url:
       register-with-eureka: true

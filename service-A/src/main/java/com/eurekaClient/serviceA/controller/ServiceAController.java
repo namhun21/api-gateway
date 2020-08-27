@@ -1,22 +1,21 @@
 package com.eurekaClient.serviceA.controller;
 
-import com.eurekaClient.serviceA.model.SearchVO;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ServiceAController {
 
     @GetMapping("/api")
-    public String serviceA(){
+    public String getRequest(){
         return "Hello Service A";
     }
     @GetMapping(value = "/api/{idx}")
-    public String serviceA(@PathVariable("idx") String idx){
+    public String getRequest(@PathVariable("idx") String idx){
         return "Hello Service A";
     }
-    @RequestMapping(method = RequestMethod.POST, path = "/api")
-    public SearchVO postRequest(@RequestBody SearchVO searchVO){
-        return searchVO;
+    @PostMapping("/api")
+    public String postRequest(@RequestBody String message){
+        return message;
     }
+
 }
